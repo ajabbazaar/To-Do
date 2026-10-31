@@ -12,18 +12,23 @@
 .btn{border:0;border-radius:11px;padding:11px 14px;font:700 14px system-ui;cursor:pointer}.primary{background:var(--green);color:white}.soft{background:var(--soft);color:var(--green)}.outline{background:#fff;border:1px solid var(--line);color:var(--ink)}.danger{background:#fff0eb;color:var(--red)}.row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.row>*{min-width:0}
 .reminder{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #edf1ed}.reminder:last-child{border:0}.reminder strong{display:block;font-size:14px}.reminder small{color:var(--muted)}.reminder input[type=time]{padding:7px;border:1px solid var(--line);border-radius:8px;font:inherit}.switch{appearance:none;width:40px;height:23px;background:#d6ded7;border-radius:30px;position:relative;cursor:pointer;flex:none}.switch:checked{background:var(--green)}.switch:before{content:"";position:absolute;width:17px;height:17px;background:white;top:3px;left:3px;border-radius:50%;transition:.15s}.switch:checked:before{transform:translateX(17px)}
 select,input[type=text],input[type=time],input[type=number]{font:inherit;border:1px solid #dce6dc;border-radius:9px;padding:10px;background:#fff;color:var(--ink)}.field{display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:700}.field input,.field select{width:100%}.waterPanel{background:#f3f9ff;border:1px solid #dcecf6;border-radius:14px;padding:13px}.waterBig{font-size:29px}.waterTrack{height:8px;background:#dceaf1;border-radius:20px;overflow:hidden;margin:10px 0}.waterTrack div{height:100%;background:#3b9bc6;width:0}.customList{margin-top:10px}.empty{padding:14px;text-align:center;background:#fafcf9;border:1px dashed #dce6dc;border-radius:12px;color:var(--muted);font-size:13px}
-textarea{width:100%;min-height:65px;border:1px solid var(--line);border-radius:10px;padding:10px;font:inherit}.reportItem{padding:11px;border:1px solid var(--line);border-radius:12px;margin:8px 0;background:#fbfdfb}.reportItem strong{display:block}.reportItem small{color:var(--muted)}.reportItem .row{margin-top:8px}.alarmOverlay{position:fixed;inset:0;background:#081a12d9;display:none;align-items:center;justify-content:center;padding:20px;z-index:10}.alarmOverlay.show{display:flex}.alarmBox{max-width:420px;width:100%;background:white;border-radius:24px;padding:25px;text-align:center;box-shadow:0 20px 80px #0005}.alarmBox .bell{font-size:48px}.alarmBox h2{margin:8px 0}.alarmBox p{color:var(--muted)}.foot{text-align:center;color:var(--muted);font-size:12px;padding:20px}
+textarea{width:100%;min-height:65px;border:1px solid var(--line);border-radius:10px;padding:10px;font:inherit}.reportItem{padding:11px;border:1px solid var(--line);border-radius:12px;margin:8px 0;background:#fbfdfb}.reportItem strong{display:block}.reportItem small{color:var(--muted)}.reportItem .row{margin-top:8px}.alarmOverlay{position:fixed;inset:0;background:#081a12d9;display:none;align-items:center;justify-content:center;padding:20px;z-index:10}.alarmOverlay.show{display:flex}.alarmBox{max-width:420px;width:100%;background:white;border-radius:24px;padding:25px;text-align:center;box-shadow:0 20px 80px #0005}.alarmBox .bell{font-size:48px}.alarmBox h2{margin:8px 0}.alarmBox p{color:var(--muted)}.taskActions{display:flex;gap:5px}.taskActions .btn,.reminderActions .btn{padding:7px 9px;font-size:12px}.addTaskPanel{margin-top:14px;padding:12px;background:#f7faf6;border:1px solid var(--line);border-radius:13px}.profileOverlay{position:fixed;inset:0;background:#071a12d9;display:none;align-items:center;justify-content:center;padding:18px;z-index:30}.profileOverlay.show{display:flex}.profileBox{width:min(430px,100%);background:#fff;border-radius:22px;padding:24px;box-shadow:0 20px 80px #0005}.profileBox h2{margin:0 0 8px}.profileBox p{color:var(--muted);font-size:14px;line-height:1.5}.profileBox .field{margin:15px 0}.foot{text-align:center;color:var(--muted);font-size:12px;padding:20px}
 @media(max-width:760px){.layout{grid-template-columns:1fr}.hero{padding:19px}.stats{gap:7px}.stat{padding:9px}.stat b{font-size:20px}}@media(max-width:420px){.app{padding:10px}.heroTop{align-items:flex-start;flex-direction:column}.reminder{align-items:flex-start}.reminder .row{justify-content:flex-end}}
+.fitlife-loading{padding:12px;text-align:center;color:#748078;font-size:13px}
 </style></head>
 <body><main class="app">
 <header class="hero">
- <div class="heroTop"><div class="brand">👑 ARJIT FITLIFE</div><label class="muted" style="color:#dce9df">তারিখ <input id="date" type="date"></label></div>
+ <div class="heroTop"><div class="brand"><span id="brandName">ARJIT</span></div><label class="muted" style="color:#dce9df">তারিখ <input id="date" type="date"></label></div>
  <h1>Own Your Day. Build Your Life.</h1><p>তোমার রুটিন, তোমার সময়, তোমার উন্নতি।</p>
  <div class="stats"><div class="stat"><b id="percent">0%</b><span>আজকের অগ্রগতি</span></div><div class="stat"><b id="doneCount">0/0</b><span>Activity সম্পন্ন</span></div><div class="stat"><b id="waterCount">0/8</b><span>জলের গ্লাস</span></div></div>
 </header>
 <div class="layout">
 <div class="stack">
-<section class="card"><div class="head"><div><div class="eyebrow">YOUR DAILY PLAN</div><h2>📋 Daily Activity Checklist</h2></div><span class="pill" id="dayStatus">TODAY</span></div><div class="progress"><div id="progressBar"></div></div><div class="muted" id="progressMsg">একটি একটি করে কাজ সম্পন্ন করো।</div><div id="tasks"></div></section>
+<section class="card"><div class="head"><div><div class="eyebrow">HYDRATION REMINDER</div><h2>💧 Water Interval Alarm</h2></div></div><div class="waterPanel"><div class="waterBig">💧 <b id="waterNum">0</b><span class="muted">/ 8 গ্লাস</span></div><div class="waterTrack"><div id="waterBar"></div></div><div class="muted">জল পান করলে নিচের বাটনে চাপ দাও।</div><div class="row" style="margin-top:10px"><button class="btn primary" id="drink">+ এক গ্লাস জল</button><button class="btn outline" id="undoWater">Undo</button></div></div>
+ <div style="margin-top:13px"><label class="field">কতক্ষণ পরপর জল পানের রিমাইন্ডার?<select id="waterInterval"><option value="60">প্রতি ১ ঘণ্টা</option><option value="90" selected>প্রতি ১.৫ ঘণ্টা</option><option value="120">প্রতি ২ ঘণ্টা</option></select></label><div class="reminder"><div><strong>Water Reminder</strong><small>নির্বাচিত বিরতিতে নোটিফিকেশন ও সাউন্ড</small></div><input class="switch" id="waterOn" type="checkbox" checked></div><p class="muted">রিমাইন্ডার দিনের ৭:০০ AM–১০:০০ PM সময়ের মধ্যে চলবে।</p></div>
+</section>
+
+<section class="card"><div class="head"><div><div class="eyebrow">YOUR DAILY PLAN</div><h2>📋 Daily Activity Checklist</h2></div><span class="pill" id="dayStatus">TODAY</span></div><div class="progress"><div id="progressBar"></div></div><div class="muted" id="progressMsg">একটি একটি করে কাজ সম্পন্ন করো।</div><div class="row" style="margin:12px 0"><button class="btn soft" id="toggleCompleted">সম্পন্ন কাজ দেখাও</button><span class="muted" id="hiddenDoneInfo"></span></div><div id="tasks"></div><div class="addTaskPanel"><div class="eyebrow">MANAGE ACTIVITIES</div><div class="row" style="align-items:end;margin-top:8px"><label class="field" style="flex:2">নতুন কাজের নাম<input id="newTaskTitle" type="text" placeholder="যেমন: বই পড়া"></label><label class="field" style="flex:1">সময়<input id="newTaskTime" type="time" value="07:30"></label><button class="btn primary" id="addTask">+ Add Activity</button></div></div></section>
 <section class="card"><div class="head"><div><div class="eyebrow">PERSONAL TASKS</div><h2>➕ নিজের কাজ ও রিমাইন্ডার</h2></div></div><p class="muted">যেকোনো অতিরিক্ত কাজের নাম ও সময় যোগ করো। এটি তোমার নির্দিষ্ট দিনের Activity-তেও যুক্ত হবে।</p>
  <div class="row" style="align-items:end"><label class="field" style="flex:2">কাজের নাম<input id="customTitle" type="text" placeholder="যেমন: কাস্টমারের ফোন করা"></label><label class="field" style="flex:1">সময়<input id="customTime" type="time" value="16:00"></label><button class="btn primary" id="addCustom">যোগ করো</button></div><div id="customList" class="customList"></div>
 </section>
@@ -31,66 +36,121 @@ textarea{width:100%;min-height:65px;border:1px solid var(--line);border-radius:1
 <section class="card"><div class="head"><div><div class="eyebrow">ACTIVITY ARCHIVE</div><h2>🗂️ Daily Reports History</h2></div><span class="pill">Saved on this device</span></div><p class="muted">প্রতিদিনের রিপোর্ট এখানে তারিখ অনুযায়ী জমা থাকবে। যেকোনো দিনের রিপোর্ট খুলে দেখতে পারবে।</p><div id="history"></div></section>
 </div>
 <div class="stack">
+
 <section class="card"><div class="head"><div><div class="eyebrow">SMART ALARM CENTER</div><h2>⏰ Routine Reminders</h2></div><span class="pill">Daily</span></div><p class="muted">রুটিনে উল্লেখ করা সময় অনুযায়ী অ্যালার্ম। যেগুলো দরকার নেই সেগুলো বন্ধ রাখতে পারো।</p><div class="row" style="margin-bottom:12px"><button class="btn soft" id="enableNotify">🔔 Notification চালু</button><span class="muted" id="notifyState">অনুমতি বাকি</span></div><div id="routineAlarms"></div></section>
-<section class="card"><div class="head"><div><div class="eyebrow">HYDRATION REMINDER</div><h2>💧 Water Interval Alarm</h2></div></div><div class="waterPanel"><div class="waterBig">💧 <b id="waterNum">0</b><span class="muted">/ 8 গ্লাস</span></div><div class="waterTrack"><div id="waterBar"></div></div><div class="muted">জল পান করলে নিচের বাটনে চাপ দাও।</div><div class="row" style="margin-top:10px"><button class="btn primary" id="drink">+ এক গ্লাস জল</button><button class="btn outline" id="undoWater">Undo</button></div></div>
- <div style="margin-top:13px"><label class="field">কতক্ষণ পরপর জল পানের রিমাইন্ডার?<select id="waterInterval"><option value="60">প্রতি ১ ঘণ্টা</option><option value="90" selected>প্রতি ১.৫ ঘণ্টা</option><option value="120">প্রতি ২ ঘণ্টা</option></select></label><div class="reminder"><div><strong>Water Reminder</strong><small>নির্বাচিত বিরতিতে নোটিফিকেশন ও সাউন্ড</small></div><input class="switch" id="waterOn" type="checkbox" checked></div><p class="muted">রিমাইন্ডার দিনের ৭:০০ AM–১০:০০ PM সময়ের মধ্যে চলবে।</p></div>
-</section>
+
 <section class="card"><div class="head"><div><div class="eyebrow">YOUR DAILY SUMMARY</div><h2>📊 আজকের রিপোর্ট</h2></div></div><div id="summary" class="muted">আজকের Activity এখানে দেখা যাবে।</div><div class="row" style="margin-top:13px"><button class="btn primary" id="saveReport" style="flex:1">রিপোর্ট সেভ করো</button><button class="btn soft" id="whatsapp" style="flex:1">WhatsApp</button></div><button class="btn danger" id="resetDay" style="width:100%;margin-top:9px">এই দিনের ডেটা রিসেট</button></section>
 </div></div>
 <div class="foot">“আজকের শৃঙ্খলা, আগামীকালের সফলতা।”<br>তোমার দৈনিক অগ্রগতি—এক জায়গায়, প্রতিদিন।</div>
 </main>
+<div class="profileOverlay" id="profileOverlay" role="dialog" aria-modal="true" aria-labelledby="profileHeading"><div class="profileBox"><div class="eyebrow">WELCOME TO YOUR PERSONAL ROUTINE</div><h2 id="profileHeading">👑 Welcome to FITLIFE</h2><p>শুরু করার আগে তোমার নাম লিখে রাখো। নামটি এই ব্রাউজারে সেভ থাকবে। রিমাইন্ডার পেতে Browser Notification অনুমতিও চালু করতে পারো।</p><label class="field">তোমার নাম<input id="profileName" type="text" maxlength="40" placeholder="তোমার নাম লিখো" autocomplete="given-name"></label><label class="row" style="font-size:13px;margin:10px 0 16px"><input id="profileNotify" type="checkbox" checked style="width:18px;height:18px"> Browser Notifications চালু করো</label><button class="btn primary" id="saveProfile" style="width:100%">শুরু করি</button></div></div>
 <div class="alarmOverlay" id="alarmOverlay"><div class="alarmBox"><div class="bell">⏰</div><div class="eyebrow">ARJIT FITLIFE REMINDER</div><h2 id="alarmTitle">সময় হয়েছে!</h2><p id="alarmDesc">তোমার পরবর্তী কাজের সময়।</p><button class="btn primary" id="dismissAlarm">ঠিক আছে, মনে রাখব</button></div></div>
 <script>
 const baseTasks=[
 ["05:30","ঘুম থেকে ওঠা"],["05:35","দাঁত ব্রাশ ও মুখ পরিষ্কার"],["05:40","উষ্ণ জল পান"],["05:45","১৫ মিনিট ব্যায়াম"],["06:00","স্নান ও ফ্রেশ হওয়া"],["06:20","সকালের নাস্তা"],["06:30","দোকানে যাওয়া"],["07:00","দোকান খোলা ও পরিষ্কার"],["07:20","দোকানের কাজ শুরু"],["10:00","সকালের ছোট ব্রেক"],["10:15","আবার কাজ শুরু"],["12:30","বাড়ি ফেরা ও ফ্রেশ হওয়া"],["13:00","দুপুরের খাবার"],["13:30","দুপুরের বিশ্রাম"],["15:00","আবার দোকানে যাওয়া"],["15:30","বিকেলের দোকানের কাজ"],["18:00","সন্ধ্যার ব্রেক"],["18:30","শেষ পর্যায়ের কাজ"],["20:30","বাড়ি ফেরা ও ফ্রেশ হওয়া"],["21:00","রাতের খাবার"],["21:30","ব্যক্তিগত সময় ও পরিবারের সঙ্গে সময়"],["22:30","ঘুমাতে যাওয়া"]
 ];
 const $=id=>document.getElementById(id);const date=$('date');const today=new Date();date.value=new Date(today-today.getTimezoneOffset()*60000).toISOString().slice(0,10);
-const dayKey=()=>`arjit_fitlife_v2_${date.value}`;const historyKey='arjit_fitlife_reports_v2';let state={},fired={},alarmTimer=null,audioCtx=null;
+const dayKey=()=>`arjit_fitlife_v2_${date.value}`;const historyKey='arjit_fitlife_reports_v2';const tasksKey='arjit_fitlife_task_definitions_v1';const profileKey='arjit_fitlife_profile_v1';let state={},fired={},alarmTimer=null,audioCtx=null,taskDefs=[],showCompleted=false;
 // Safe storage wrapper: the page remains usable even if browser storage is blocked.
 const store={get(k){try{return localStorage.getItem(k)}catch(e){return null}},set(k,v){try{localStorage.setItem(k,v);return true}catch(e){return false}},remove(k){try{localStorage.removeItem(k)}catch(e){}}};
-function load(){try{state=JSON.parse(store.get(dayKey())||'{}')}catch(e){state={}}state.done=state.done||{};state.custom=state.custom||[];state.alarms=state.alarms||{};state.water=state.water||0;state.waterOn=state.waterOn!==false;state.waterInterval=state.waterInterval||90;state.notes=state.notes||'';renderAll()}
+function initTaskDefs(){
+ // Start with a clean slate: remove all built-in/preloaded routine activities and reminders.
+ // Keep only activities the user has personally added in an earlier session.
+ try{
+  const saved=JSON.parse(store.get(tasksKey)||'null');
+  if(Array.isArray(saved)){
+   taskDefs=saved.filter(t=>t&&t.kind==='custom'&&typeof t.id==='string'&&typeof t.title==='string'&&typeof t.time==='string');
+   store.set(tasksKey,JSON.stringify(taskDefs));
+   return;
+  }
+ }catch(e){}
+ taskDefs=[];
+ store.set(tasksKey,JSON.stringify(taskDefs));
+}
+function saveTaskDefs(){store.set(tasksKey,JSON.stringify(taskDefs))}
+function load(){try{state=JSON.parse(store.get(dayKey())||'{}')}catch(e){state={}}if(!state||typeof state!=='object'||Array.isArray(state))state={};if(!state.done||typeof state.done!=='object')state.done={};if(!state.alarms||typeof state.alarms!=='object')state.alarms={};state.water=Math.max(0,Number(state.water)||0);state.waterOn=state.waterOn!==false;state.waterInterval=[60,90,120].includes(Number(state.waterInterval))?Number(state.waterInterval):90;state.notes=typeof state.notes==='string'?state.notes:'';renderAll()}
 function persist(){store.set(dayKey(),JSON.stringify(state));updateStats();updateSummary();saveHistory()}
-function allTasks(){return baseTasks.map((x,i)=>({time:x[0],title:x[1],id:'base_'+i})).concat(state.custom.map((x,i)=>({...x,id:'custom_'+i,custom:true})))}
-function renderTasks(){let box=$('tasks');box.innerHTML='';allTasks().forEach(t=>{let row=document.createElement('div');row.className='task'+(state.done[t.id]?' done':'');let cb=document.createElement('input');cb.type='checkbox';cb.checked=!!state.done[t.id];cb.onchange=()=>{state.done[t.id]=cb.checked;row.classList.toggle('done',cb.checked);persist()};let lab=document.createElement('label');let small=document.createElement('small');small.textContent=t.time+' • '+(t.custom?'নিজের রিমাইন্ডার':'রুটিন');lab.append(small,document.createTextNode(t.title));row.append(cb,lab);if(t.custom){let del=document.createElement('button');del.className='btn danger';del.textContent='×';del.title='কাজ মুছুন';del.onclick=()=>{state.custom.splice(Number(t.id.split('_')[1]),1);delete state.done[t.id];persist();renderTasks();renderAlarms()};row.append(del)}box.append(row)})}
-function renderAlarms(){let box=$('routineAlarms');box.innerHTML='';allTasks().forEach((t,i)=>{let saved=state.alarms[t.id]||{on:true,time:t.time};let row=document.createElement('div');row.className='reminder';let txt=document.createElement('div');let strong=document.createElement('strong');strong.textContent=t.title;let sm=document.createElement('small');sm.textContent=t.custom?'Custom reminder':'Daily routine';txt.append(strong,sm);let controls=document.createElement('div');controls.className='row';let time=document.createElement('input');time.type='time';time.value=saved.time||t.time;let sw=document.createElement('input');sw.type='checkbox';sw.className='switch';sw.checked=saved.on!==false;let save=()=>{state.alarms[t.id]={time:time.value,on:sw.checked};persist()};time.onchange=save;sw.onchange=save;controls.append(time,sw);row.append(txt,controls);box.append(row)})}
-function renderCustom(){let box=$('customList');box.innerHTML='';if(!state.custom.length){box.innerHTML='<div class="empty">এখনও কোনো অতিরিক্ত কাজ যোগ করা হয়নি।</div>';return}state.custom.forEach((x,i)=>{let d=document.createElement('div');d.className='reminder';d.innerHTML=`<div><strong>${escapeHtml(x.title)}</strong><small>${x.time} • Custom activity</small></div><span class="pill">Added</span>`;box.append(d)})}
+function allTasks(){return taskDefs.map(t=>({...t,custom:t.kind==='custom'}))}
+function taskActions(t){let actions=document.createElement('div');actions.className='taskActions';let edit=document.createElement('button');edit.className='btn soft';edit.textContent='Edit';edit.onclick=()=>editTask(t.id);let del=document.createElement('button');del.className='btn danger';del.textContent='Delete';del.onclick=()=>deleteTask(t.id);actions.append(edit,del);return actions}
+function renderTasks(){let box=$('tasks');box.innerHTML='';let tasks=allTasks(),visible=tasks.filter(t=>showCompleted||!state.done[t.id]);$('hiddenDoneInfo').textContent=tasks.length-visible.length?`${tasks.length-visible.length}টি সম্পন্ন কাজ লুকানো আছে`:'';$('toggleCompleted').textContent=showCompleted?'সম্পন্ন কাজ লুকাও':'সম্পন্ন কাজ দেখাও';if(!visible.length){box.innerHTML='<div class="empty">সব কাজ সম্পন্ন! চাইলে “সম্পন্ন কাজ দেখাও” চাপ দিয়ে দেখতে পারো।</div>';return}visible.forEach(t=>{let row=document.createElement('div');row.className='task';let cb=document.createElement('input');cb.type='checkbox';cb.checked=!!state.done[t.id];cb.onchange=()=>{if(cb.checked)state.done[t.id]=true;else delete state.done[t.id];persist();renderTasks()};let lab=document.createElement('label');let small=document.createElement('small');small.textContent=t.time+' • '+(t.custom?'নিজের কাজ':'রুটিন');lab.append(small,document.createTextNode(t.title));row.append(cb,lab,taskActions(t));box.append(row)})}
+function renderAlarms(){let box=$('routineAlarms');box.innerHTML='';allTasks().forEach(t=>{let saved=state.alarms[t.id]||{on:true,time:t.time};let row=document.createElement('div');row.className='reminder';let txt=document.createElement('div');let strong=document.createElement('strong');strong.textContent=t.title;let sm=document.createElement('small');sm.textContent=t.custom?'Custom reminder':'Daily routine';txt.append(strong,sm);let controls=document.createElement('div');controls.className='row';let time=document.createElement('input');time.type='time';time.value=saved.time||t.time;let sw=document.createElement('input');sw.type='checkbox';sw.className='switch';sw.checked=saved.on!==false;let save=()=>{state.alarms[t.id]={time:time.value,on:sw.checked};persist()};time.onchange=save;sw.onchange=save;controls.append(time,sw);row.append(txt,controls,taskActions(t));box.append(row)});let add=document.createElement('button');add.className='btn soft';add.style.marginTop='12px';add.textContent='+ Add Activity / Reminder';add.onclick=()=>$('newTaskTitle').focus();box.append(add)}
+function renderCustom(){let box=$('customList');box.innerHTML='';let customs=taskDefs.filter(x=>x.kind==='custom');if(!customs.length){box.innerHTML='<div class="empty">এখনও কোনো অতিরিক্ত কাজ যোগ করা হয়নি।</div>';return}customs.forEach(x=>{let d=document.createElement('div');d.className='reminder';let label=document.createElement('div');let strong=document.createElement('strong');strong.textContent=x.title;let small=document.createElement('small');small.textContent=x.time+' • Custom activity';label.append(strong,small);d.append(label,taskActions(x));box.append(d)})}
+function addTask(title,time){let id='task_'+Date.now().toString(36)+'_'+Math.random().toString(36).slice(2,7);taskDefs.push({id,title,time,kind:'custom'});saveTaskDefs();renderTasks();renderAlarms();renderCustom();updateStats();updateSummary()}
+function editTask(id){let t=taskDefs.find(x=>x.id===id);if(!t)return;let title=prompt('কাজের নাম পরিবর্তন করো:',t.title);if(title===null)return;title=title.trim();if(!title){alert('কাজের নাম খালি রাখা যাবে না।');return}let time=prompt('সময় পরিবর্তন করো (HH:MM):',t.time);if(time===null)return;if(!/^([01]\d|2[0-3]):[0-5]\d$/.test(time)){alert('সময় ২৪ ঘণ্টার HH:MM ফরম্যাটে দাও।');return}t.title=title;t.time=time;saveTaskDefs();renderTasks();renderAlarms();renderCustom();updateStats();updateSummary()}
+function deleteTask(id){let t=taskDefs.find(x=>x.id===id);if(!t||!confirm(`“${t.title}” কাজটি সব দিনের তালিকা থেকে মুছে ফেলবে?`))return;taskDefs=taskDefs.filter(x=>x.id!==id);delete state.done[id];delete state.alarms[id];saveTaskDefs();persist();renderTasks();renderAlarms();renderCustom()}
 function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 function updateStats(){let tasks=allTasks(),done=tasks.filter(t=>state.done[t.id]).length,p=Math.round(done/(tasks.length||1)*100);$('percent').textContent=p+'%';$('doneCount').textContent=done+'/'+tasks.length;$('waterCount').textContent=state.water+'/8';$('progressBar').style.width=p+'%';$('progressMsg').textContent=p===100?'দারুণ! আজকের সব Activity সম্পন্ন 🎉':`${p}% সম্পন্ন — ধারাবাহিকতাই সাফল্য!`;$('waterNum').textContent=state.water;$('waterBar').style.width=Math.min(state.water/8*100,100)+'%'}
 function updateSummary(){let tasks=allTasks(),done=tasks.filter(t=>state.done[t.id]);$('summary').innerHTML=`<b>${done.length} / ${tasks.length}</b> Activity সম্পন্ন<br><b>${state.water} / 8</b> গ্লাস জল পান<br>${done.length?done.map(t=>'✅ '+escapeHtml(t.time+' '+t.title)).join('<br>'):'এখনও কোনো Activity সম্পন্ন করা হয়নি।'}`}
 function getReport(){let tasks=allTasks(),done=tasks.filter(t=>state.done[t.id]);return {date:date.value,done:done.length,total:tasks.length,water:state.water,activities:tasks.map(t=>({time:t.time,title:t.title,done:!!state.done[t.id]})),notes:state.notes,updated:new Date().toLocaleString()}}
-function saveHistory(){let h={};try{h=JSON.parse(store.get(historyKey)||'{}')}catch(e){}h[date.value]=getReport();store.set(historyKey,JSON.stringify(h));renderHistory()}
-function renderHistory(){let h={};try{h=JSON.parse(store.get(historyKey)||'{}')}catch(e){}let box=$('history');box.innerHTML='';let keys=Object.keys(h).sort().reverse();if(!keys.length){box.innerHTML='<div class="empty">রিপোর্ট সেভ হলে এখানে তারিখ অনুযায়ী দেখা যাবে।</div>';return}keys.slice(0,30).forEach(k=>{let r=h[k],d=document.createElement('div');d.className='reportItem';let b=document.createElement('strong');b.textContent='📅 '+k;let sm=document.createElement('small');sm.textContent=`${r.done}/${r.total} Activity • ${r.water}/8 গ্লাস জল`;let row=document.createElement('div');row.className='row';let view=document.createElement('button');view.className='btn soft';view.textContent='রিপোর্ট দেখুন';view.onclick=()=>{date.value=k;load();window.scrollTo({top:0,behavior:'smooth'})};let wa=document.createElement('button');wa.className='btn outline';wa.textContent='WhatsApp';wa.onclick=()=>sendReport(r);row.append(view,wa);d.append(b,sm,row);box.append(d)})}
+function saveHistory(){let h={};try{h=JSON.parse(store.get(historyKey)||'{}')}catch(e){h={}}if(!h||typeof h!=='object'||Array.isArray(h))h={};h[date.value]=getReport();store.set(historyKey,JSON.stringify(h));renderHistory()}
+function renderHistory(){let h={};try{h=JSON.parse(store.get(historyKey)||'{}')}catch(e){h={}}if(!h||typeof h!=='object'||Array.isArray(h))h={};let box=$('history');box.innerHTML='';let keys=Object.keys(h).sort().reverse();if(!keys.length){box.innerHTML='<div class="empty">রিপোর্ট সেভ হলে এখানে তারিখ অনুযায়ী দেখা যাবে।</div>';return}keys.slice(0,30).forEach(k=>{let r=h[k],d=document.createElement('div');d.className='reportItem';let b=document.createElement('strong');b.textContent='📅 '+k;let sm=document.createElement('small');sm.textContent=`${r.done}/${r.total} Activity • ${r.water}/8 গ্লাস জল`;let row=document.createElement('div');row.className='row';let view=document.createElement('button');view.className='btn soft';view.textContent='রিপোর্ট দেখুন';view.onclick=()=>{date.value=k;load();window.scrollTo({top:0,behavior:'smooth'})};let wa=document.createElement('button');wa.className='btn outline';wa.textContent='WhatsApp';wa.onclick=()=>sendReport(r);row.append(view,wa);d.append(b,sm,row);box.append(d)})}
 function reportText(r){return ['👑 ARJIT FITLIFE — DAILY ROUTINE REPORT','📅 তারিখ: '+r.date,`📊 সম্পন্ন: ${r.done}/${r.total} Activity`,'💧 জল পান: '+r.water+'/8 গ্লাস','', 'ACTIVITY DETAILS:',...r.activities.map(a=>(a.done?'✅ ':'⬜ ')+a.time+' — '+a.title),r.notes?'':'',r.notes?'📝 নোট: '+r.notes:''].filter(x=>x!==undefined).join('\n')}
 function sendReport(r){window.open('https://wa.me/917601952219?text='+encodeURIComponent(reportText(r)),'_blank')}
 function renderAll(){renderTasks();renderAlarms();renderCustom();$('notes').value=state.notes;$('waterInterval').value=state.waterInterval;$('waterOn').checked=state.waterOn;updateStats();updateSummary();renderHistory()}
 $('date').onchange=load;$('notes').oninput=()=>{state.notes=$('notes').value;persist()};
-$('addCustom').onclick=()=>{let title=$('customTitle').value.trim(),time=$('customTime').value;if(!title||!time){alert('কাজের নাম ও সময় দুটোই দাও।');return}state.custom.push({title,time});$('customTitle').value='';persist();renderTasks();renderAlarms();renderCustom()};
+$('addCustom').onclick=()=>{let title=$('customTitle').value.trim(),time=$('customTime').value;if(!title||!time){alert('কাজের নাম ও সময় দুটোই দাও।');return}addTask(title,time);$('customTitle').value=''};$('addTask').onclick=()=>{let title=$('newTaskTitle').value.trim(),time=$('newTaskTime').value;if(!title||!time){alert('কাজের নাম ও সময় দুটোই দাও।');return}addTask(title,time);$('newTaskTitle').value=''};$('toggleCompleted').onclick=()=>{showCompleted=!showCompleted;renderTasks()};
 $('waterInterval').onchange=()=>{state.waterInterval=Number($('waterInterval').value);persist();resetWaterClock()};$('waterOn').onchange=()=>{state.waterOn=$('waterOn').checked;persist();resetWaterClock()};
-$('drink').onclick=()=>{state.water=Math.min(20,(state.water||0)+1);persist();playChime('water')};$('undoWater').onclick=()=>{state.water=Math.max(0,(state.water||0)-1);persist()};
+$('drink').onclick=()=>{state.water=Math.min(20,(state.water||0)+1);persist();playChime('drop')};$('undoWater').onclick=()=>{state.water=Math.max(0,(state.water||0)-1);persist()};
 $('enableNotify').onclick=async()=>{if(!('Notification'in window)){$('notifyState').textContent='Browser notification support নেই';return}let p=await Notification.requestPermission();$('notifyState').textContent=p==='granted'?'Notifications চালু হয়েছে':p==='denied'?'Permission blocked':'অনুমতি দেওয়া হয়নি'};
-// Three clearly different, longer reminder melodies: water, routine and custom task.
+// Soft, pleasant sound set: gentle droplets, mellow routine chime, and a warm meal cue.
+let audioUnlocked=false;
+function unlockAudio(){try{const AC=window.AudioContext||window.webkitAudioContext;if(!AC)return;if(!audioCtx)audioCtx=new AC();if(audioCtx.state==='suspended')audioCtx.resume();audioUnlocked=true}catch(e){}}
+document.addEventListener('pointerdown',unlockAudio,{once:true});document.addEventListener('keydown',unlockAudio,{once:true});
 function playChime(kind){
  try{
-  let AC=window.AudioContext||window.webkitAudioContext;if(!AC)return;
-  if(!audioCtx)audioCtx=new AC();if(audioCtx.state==='suspended')audioCtx.resume();
-  const patterns={
-   water:{notes:[523,659,784,1047],step:.24,duration:.62,wave:'sine',gain:.30},
-   routine:{notes:[784,988,1175,988,1175],step:.28,duration:.68,wave:'triangle',gain:.32},
-   custom:{notes:[880,660,880,1047],step:.34,duration:.78,wave:'square',gain:.24},
-   test:{notes:[784,988,1175,988,1175],step:.28,duration:.68,wave:'triangle',gain:.32}
+  const AC=window.AudioContext||window.webkitAudioContext;if(!AC)return;
+  if(!audioCtx)audioCtx=new AC();
+  const ctx=audioCtx;
+  if(ctx.state==='suspended')ctx.resume();
+  const now=ctx.currentTime;
+  // Soft master gain prevents sharp or painfully loud tones.
+  const master=ctx.createGain();master.gain.setValueAtTime(.72,now);master.connect(ctx.destination);
+  const note=(freq,delay,duration,volume=.055,wave='sine',endFreq=null)=>{
+   const osc=ctx.createOscillator(),gain=ctx.createGain(),filter=ctx.createBiquadFilter();
+   const at=now+delay;osc.type=wave;osc.frequency.setValueAtTime(freq,at);
+   if(endFreq)osc.frequency.exponentialRampToValueAtTime(endFreq,at+duration);
+   filter.type='lowpass';filter.frequency.setValueAtTime(1700,at);
+   gain.gain.setValueAtTime(.0001,at);gain.gain.exponentialRampToValueAtTime(volume,at+.05);
+   gain.gain.setValueAtTime(volume,at+Math.max(.06,duration*.55));gain.gain.exponentialRampToValueAtTime(.0001,at+duration);
+   osc.connect(filter);filter.connect(gain);gain.connect(master);osc.start(at);osc.stop(at+duration+.04);
   };
-  const pattern=patterns[kind]||patterns.routine;
-  pattern.notes.forEach((f,i)=>{
-   let o=audioCtx.createOscillator(),g=audioCtx.createGain();o.type=pattern.wave;o.frequency.setValueAtTime(f,audioCtx.currentTime+i*pattern.step);
-   o.connect(g);g.connect(audioCtx.destination);let t=audioCtx.currentTime+i*pattern.step;
-   g.gain.setValueAtTime(.001,t);g.gain.exponentialRampToValueAtTime(pattern.gain,t+.045);
-   g.gain.setValueAtTime(pattern.gain*.8,t+pattern.duration*.55);g.gain.exponentialRampToValueAtTime(.001,t+pattern.duration);
-   o.start(t);o.stop(t+pattern.duration+.02);
-  });
- }catch(e){}
+  const droplet=(delay,volume=.035)=>{
+   // A rounded plip: falling pitch plus a tiny filtered splash, not a harsh beep.
+   note(980,delay,.20,volume,'sine',510);
+   note(1450,delay+.015,.075,volume*.22,'sine',900);
+  };
+  if(kind==='drop'){
+   // Very short, quiet confirmation when the user taps Add Water.
+   droplet(0,.025);return;
+  }
+  if(kind==='water'){
+   // A gentle sequence of water drops for the drink-water reminder.
+   droplet(0,.043);droplet(.42,.038);droplet(.92,.043);note(520,1.38,.48,.025,'sine',390);return;
+  }
+  if(kind==='eating'){
+   // Long, warm meal-time chime: mellow bell-like notes with soft tails.
+   note(392,.00,1.05,.048,'sine');
+   note(493.88,.72,1.10,.047,'sine');
+   note(587.33,1.48,1.20,.045,'sine');
+   note(493.88,2.35,1.35,.042,'sine');
+   note(392,3.30,1.65,.038,'sine');
+   note(523.25,4.35,1.55,.032,'triangle');return;
+  }
+  if(kind==='custom'){
+   note(523.25,0,.72,.043,'sine');note(659.25,.55,.82,.040,'sine');note(783.99,1.18,.95,.036,'sine');return;
+  }
+  // Longer, smooth standard routine reminder; warm notes, no buzzer-like edge.
+  note(440,0,.78,.043,'sine');note(554.37,.58,.86,.041,'sine');
+  note(659.25,1.22,.95,.039,'sine');note(554.37,1.98,1.05,.036,'sine');
+  note(440,2.82,1.15,.032,'sine');
+ }catch(e){console.warn('Audio reminder unavailable:',e)}
+}
+function getAlarmType(task){
+ if(task.custom)return 'custom';
+ return /নাস্তা|খাবার|লাঞ্চ|ডিনার|ব্রেকফাস্ট|breakfast|lunch|dinner|meal/i.test(String(task.title||''))?'eating':'routine';
 }
 function triggerAlarm(type,title,desc){
- const labels={water:'💧 WATER REMINDER',routine:'🔔 ROUTINE REMINDER',custom:'⭐ CUSTOM TASK REMINDER'};
+ const labels={water:'💧 WATER REMINDER',routine:'🔔 ROUTINE REMINDER',custom:'⭐ CUSTOM TASK REMINDER',eating:'🍽️ MEAL TIME'};
  $('alarmTitle').textContent=(labels[type]||labels.routine)+' — '+title;
  $('alarmDesc').textContent=desc;$('alarmOverlay').classList.add('show');playChime(type);
  if('Notification'in window&&Notification.permission==='granted'){
@@ -101,12 +161,15 @@ $('dismissAlarm').onclick=()=>{$('alarmOverlay').classList.remove('show')};
 function minuteKey(){let d=new Date();return date.value+'_'+d.toTimeString().slice(0,5)}
 let lastMinute='';
 function alarmTick(){let d=new Date(),todayStr=new Date(d-d.getTimezoneOffset()*60000).toISOString().slice(0,10);if(date.value!==todayStr)return;let hm=d.toTimeString().slice(0,5),mk=minuteKey();if(mk===lastMinute)return;lastMinute=mk;
-for(let t of allTasks()){let a=state.alarms[t.id]||{time:t.time,on:true};if(a.on&&a.time===hm&&fired['task_'+t.id]!==mk){fired['task_'+t.id]=mk;triggerAlarm(t.custom?'custom':'routine',t.title,'এখন '+a.time+'। তোমার নির্ধারিত কাজটি শুরু করো।');return}}
+for(let t of allTasks()){let a=state.alarms[t.id]||{time:t.time,on:true};if(a.on&&a.time===hm&&fired['task_'+t.id]!==mk){fired['task_'+t.id]=mk;triggerAlarm(getAlarmType(t),t.title,'এখন '+a.time+'। তোমার নির্ধারিত কাজটি শুরু করো।');return}}
 if(state.waterOn){let start=7*60,end=22*60,mins=d.getHours()*60+d.getMinutes(),interval=Number(state.waterInterval||90);if(mins>=start&&mins<=end&&(mins-start)%interval===0&&fired.water!==mk){fired.water=mk;triggerAlarm('water','জল পান করার সময়!','এক গ্লাস জল পান করো। শরীরকে হাইড্রেটেড রাখো।')}}
 }
 function resetWaterClock(){fired.water=null}
 $('saveReport').onclick=()=>{saveHistory();alert('আজকের রিপোর্ট ওয়েবসাইটের History-তে সেভ হয়েছে।')};
 $('whatsapp').onclick=()=>{saveHistory();sendReport(getReport())};
 $('resetDay').onclick=()=>{if(confirm('এই তারিখের Activity, রিমাইন্ডার সেটিং, জল ও নোট রিসেট করবেন?')){store.remove(dayKey());load()}};
-try{load();setInterval(alarmTick,1000)}catch(err){console.error('FITLIFE startup error:',err);document.body.insertAdjacentHTML('afterbegin','<div style="margin:12px;padding:14px;background:#fff0eb;color:#7b2e1b;border-radius:12px;font:14px system-ui">অ্যাপ চালু করতে সমস্যা হয়েছে। পেজটি Chrome-এ খুলে আবার চেষ্টা করুন।</div>')}
+function updateBrandName(){let n=store.get(profileKey);try{n=JSON.parse(n||'{}').name||'ARJIT'}catch(e){n='ARJIT'}$('brandName').textContent=n.toUpperCase()}
+$('saveProfile').onclick=async()=>{let name=$('profileName').value.trim();if(!name){alert('তোমার নাম লিখো।');$('profileName').focus();return}store.set(profileKey,JSON.stringify({name}));updateBrandName();if($('profileNotify').checked&&'Notification'in window){try{let permission=await Notification.requestPermission();$('notifyState').textContent=permission==='granted'?'Notifications চালু হয়েছে':permission==='denied'?'Permission blocked':'অনুমতি দেওয়া হয়নি'}catch(e){}}else if(!('Notification'in window))$('notifyState').textContent='এই Browser-এ Notification support নেই';$('profileOverlay').classList.remove('show')};
+function showProfileIfNeeded(){let profile={};try{profile=JSON.parse(store.get(profileKey)||'{}')}catch(e){}if(profile.name){$('profileName').value=profile.name;updateBrandName();if('Notification'in window){$('notifyState').textContent=Notification.permission==='granted'?'Notifications চালু হয়েছে':Notification.permission==='denied'?'Permission blocked':'অনুমতি বাকি'}return}$('profileOverlay').classList.add('show');setTimeout(()=>$('profileName').focus(),100)}
+try{initTaskDefs();load();showProfileIfNeeded();window.setInterval(alarmTick,1000);document.documentElement.classList.add('fitlife-ready')}catch(err){console.error('FITLIFE startup error:',err);const box=document.createElement('div');box.style.cssText='position:relative;z-index:9999;margin:12px;padding:16px;background:#fff0eb;color:#7b2e1b;border:1px solid #e7b9aa;border-radius:12px;font:14px/1.6 system-ui';box.innerHTML='<b>FITLIFE চালু করতে সমস্যা হয়েছে</b><br>'+String(err&&err.message?err.message:'Unknown error')+'<br>পেজটি Chrome-এ আবার খুলুন।';document.body.prepend(box)}
 </script></body></html>
